@@ -486,10 +486,13 @@ h1 {
   border: transparent;
   border-radius: 15px;
   color: #6506ef;
+  transition: all 0.3s linear;
 }
 .reset:hover,
-.reset:focus {
+.reset:focus-visible {
   /* background-image: url("media/RED.gif"); */
+  background-color: #6506ef;
+  color: #ffff;
   background-size: cover;
   border: transparent;
 }
