@@ -51,7 +51,7 @@ $(function () {
       hint: "Named after a color he used a lot",
     },
     {
-      question: 'This dutch artist painted "The Night Café',
+      question: 'This dutch artist painted "The Night Café"',
       answers: {
         rAns: "Van Gogh",
         wAnsOne: "Francesco Clemente",
@@ -64,7 +64,7 @@ $(function () {
         wAnsTwo: 'url("media/gustavKlimt.jpeg")',
         wAnsThree: 'url("media/edvarMunch.jpeg")',
       },
-      hint: "they cant wear a pair of glasses",
+      hint: "They're a little hard of hearing",
     },
     {
       question:
@@ -115,7 +115,7 @@ $(function () {
         rAns: 'url("media/takashiMurakami.jpeg")',
         wAnsThree: 'url("media/utawaHiroshige.jpeg")',
       },
-      hint: 'Famous for the "smiling flower',
+      hint: 'Famous for the "smiling flower"',
     },
     {
       question:
@@ -136,7 +136,7 @@ $(function () {
     },
     {
       question:
-        'This insanely popular American designer founded the brand "Off-White',
+        'This insanely popular American designer founded the brand "Off-White"',
       answers: {
         rAns: "Virgil Abloh",
         wAnsOne: "Kanye West",
@@ -153,7 +153,7 @@ $(function () {
     },
     {
       question:
-        'The proteges of this wildly influential tattoo artist include the likes of "Ed Hardy',
+        'The proteges of this wildly influential tattoo artist include the likes of "Ed Hardy"',
       answers: {
         wAnsOne: "Kat Von D",
         wAnsTwo: "Mike Malone",
