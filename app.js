@@ -15,6 +15,19 @@ $(function () {
   let score = 0;
   let qCount = 0;
 
+  const loadAnswers = () => {
+    $clue.text(questionBank[qCount].hint);
+    $h2.text(questionBank[qCount].question);
+    let j = 0;
+    for (let opt in questionBank[qCount].answers) {
+      $buttons.eq(j).text(questionBank[qCount].answers[opt]);
+      $buttons
+        .eq(j)
+        .css("background-image", questionBank[qCount].backgrounds[opt]);
+      j++;
+    }
+  };
+
   const questionBank = [
     {
       question: "This artist is the founder of Neoplasticism",
@@ -195,17 +208,18 @@ $(function () {
       let pName = $playerName.val();
 
       $intro.css("display", "none");
-      $clue.text(questionBank[qCount].hint);
       $clue.removeClass("show");
-      $h2.text(questionBank[qCount].question);
-      let j = 0;
-      for (let opt in questionBank[qCount].answers) {
-        $buttons.eq(j).text(questionBank[qCount].answers[opt]);
-        $buttons
-          .eq(j)
-          .css("background-image", questionBank[qCount].backgrounds[opt]);
-        j++;
-      }
+      // $clue.text(questionBank[qCount].hint);
+      // $h2.text(questionBank[qCount].question);
+      // let j = 0;
+      // for (let opt in questionBank[qCount].answers) {
+      //   $buttons.eq(j).text(questionBank[qCount].answers[opt]);
+      //   $buttons
+      //     .eq(j)
+      //     .css("background-image", questionBank[qCount].backgrounds[opt]);
+      //   j++;
+      // }
+      loadAnswers()
     }
   });
 
@@ -218,18 +232,19 @@ $(function () {
       }
       if (qCount < questionBank.length - 1) {
         qCount++;
-        $clue.text(questionBank[qCount].hint);
         $clue.removeClass("show");
-        $h2.text(questionBank[qCount].question);
+        // $clue.text(questionBank[qCount].hint);
+        // $h2.text(questionBank[qCount].question);
 
-        let j = 0;
-        for (let opt in questionBank[qCount].answers) {
-          $buttons.eq(j).text(questionBank[qCount].answers[opt]);
-          $buttons
-            .eq(j)
-            .css("background-image", questionBank[qCount].backgrounds[opt]);
-          j++;
-        }
+        // let j = 0;
+        // for (let opt in questionBank[qCount].answers) {
+        //   $buttons.eq(j).text(questionBank[qCount].answers[opt]);
+        //   $buttons
+        //     .eq(j)
+        //     .css("background-image", questionBank[qCount].backgrounds[opt]);
+        //   j++;
+        // }
+        loadAnswers()
       } else {
         $end.css("display", "block");
         $pName.text($playerName.val());
@@ -250,14 +265,18 @@ $(function () {
     score = 0;
     $end.css("display", "none");
     $intro.css("display", "block");
-    $clue.text(questionBank[qCount].hint);
     $clue.removeClass("show");
-    $h2.text(questionBank[qCount].question);
-    let j = 0;
-    for (let opt in questionBank[qCount].answers) {
-      $buttons.eq(j).text(questionBank[qCount].answers[opt]);
-      j++;
-    }
+    // $clue.text(questionBank[qCount].hint);
+    // $h2.text(questionBank[qCount].question);
+    // let j = 0;
+    // for (let opt in questionBank[qCount].answers) {
+    //   $buttons.eq(j).text(questionBank[qCount].answers[opt]);
+    //   $buttons
+    //     .eq(j)
+    //     .css("background-image", questionBank[qCount].backgrounds[opt]);
+    //   j++;
+    // }
+    loadAnswers()
   });
 
   const scoreMessage = (value) => {
