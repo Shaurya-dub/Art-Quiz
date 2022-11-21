@@ -1,4 +1,22 @@
 $(function () {
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyCT5N3g6xqEllXNlfiv7ZQx3cCI4GrRqfk",
+    authDomain: "smartypaints-ec02b.firebaseapp.com",
+    projectId: "smartypaints-ec02b",
+    storageBucket: "smartypaints-ec02b.appspot.com",
+    messagingSenderId: "152932384333",
+    appId: "1:152932384333:web:06d528c63950b0412c6604",
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+
   const $h2 = $("h2");
   let $buttons = $(".answer");
   const $hint = $(".hint");
@@ -219,7 +237,7 @@ $(function () {
       //     .css("background-image", questionBank[qCount].backgrounds[opt]);
       //   j++;
       // }
-      loadAnswers()
+      loadAnswers();
     }
   });
 
@@ -244,7 +262,7 @@ $(function () {
         //     .css("background-image", questionBank[qCount].backgrounds[opt]);
         //   j++;
         // }
-        loadAnswers()
+        loadAnswers();
       } else {
         $end.css("display", "block");
         $pName.text($playerName.val());
@@ -276,7 +294,7 @@ $(function () {
     //     .css("background-image", questionBank[qCount].backgrounds[opt]);
     //   j++;
     // }
-    loadAnswers()
+    loadAnswers();
   });
 
   const scoreMessage = (value) => {
