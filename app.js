@@ -1,22 +1,23 @@
+// // Import the functions you need from the SDKs you need
+// import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+// // TODO: Add SDKs for Firebase products that you want to use
+// // https://firebase.google.com/docs/web/setup#available-libraries
+
+// // Your web app's Firebase configuration
+// const firebaseConfig = {
+//   apiKey: "AIzaSyCT5N3g6xqEllXNlfiv7ZQx3cCI4GrRqfk",
+//   authDomain: "smartypaints-ec02b.firebaseapp.com",
+//   projectId: "smartypaints-ec02b",
+//   storageBucket: "smartypaints-ec02b.appspot.com",
+//   messagingSenderId: "152932384333",
+//   appId: "1:152932384333:web:06d528c63950b0412c6604",
+// };
+
+// // Initialize Firebase
+// const app = initializeApp(firebaseConfig);
+// const database = firebase.database();
+
 $(function () {
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
-  // Your web app's Firebase configuration
-  const firebaseConfig = {
-    apiKey: "AIzaSyCT5N3g6xqEllXNlfiv7ZQx3cCI4GrRqfk",
-    authDomain: "smartypaints-ec02b.firebaseapp.com",
-    projectId: "smartypaints-ec02b",
-    storageBucket: "smartypaints-ec02b.appspot.com",
-    messagingSenderId: "152932384333",
-    appId: "1:152932384333:web:06d528c63950b0412c6604",
-  };
-
-  // Initialize Firebase
-  const app = initializeApp(firebaseConfig);
-
   const $h2 = $("h2");
   let $buttons = $(".answer");
   const $hint = $(".hint");
@@ -45,6 +46,10 @@ $(function () {
       j++;
     }
   };
+
+  let today
+  let endTime
+  // console.log("time", today.getTime());
 
   const questionBank = [
     {
@@ -220,6 +225,9 @@ $(function () {
 
   $start.on("click", function (e) {
     e.preventDefault();
+     let start = new Date();
+     today = start.getTime();
+     console.log("time start", today);
     if (!$playerName.val()) {
       alert("Please Enter your name");
     } else {
@@ -264,6 +272,9 @@ $(function () {
         // }
         loadAnswers();
       } else {
+          let end = new Date();
+          endTime = end.getTime();
+          console.log("End Time", (endTime - today) / 1000); 
         $end.css("display", "block");
         $pName.text($playerName.val());
         $scDisplay.text(score);
@@ -279,6 +290,9 @@ $(function () {
   });
 
   $reset.on("click", function () {
+    // let end = new Date();
+    // endTime = end.getTime();
+    // console.log('End Time', (today - endTime) / 1000); 
     qCount = 0;
     score = 0;
     $end.css("display", "none");
