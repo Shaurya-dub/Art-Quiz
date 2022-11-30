@@ -1,22 +1,37 @@
-// // Import the functions you need from the SDKs you need
-// import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
-// // TODO: Add SDKs for Firebase products that you want to use
-// // https://firebase.google.com/docs/web/setup#available-libraries
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js";
+import {
+  getDatabase,
+  ref,
+  set,
+  push,
+  onValue,
+} from "https://www.gstatic.com/firebasejs/9.14.0/firebase-database.js";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
 
-// // Your web app's Firebase configuration
-// const firebaseConfig = {
-//   apiKey: "AIzaSyCT5N3g6xqEllXNlfiv7ZQx3cCI4GrRqfk",
-//   authDomain: "smartypaints-ec02b.firebaseapp.com",
-//   projectId: "smartypaints-ec02b",
-//   storageBucket: "smartypaints-ec02b.appspot.com",
-//   messagingSenderId: "152932384333",
-//   appId: "1:152932384333:web:06d528c63950b0412c6604",
-// };
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyCT5N3g6xqEllXNlfiv7ZQx3cCI4GrRqfk",
+  authDomain: "smartypaints-ec02b.firebaseapp.com",
+  projectId: "smartypaints-ec02b",
+  storageBucket: "smartypaints-ec02b.appspot.com",
+  messagingSenderId: "152932384333",
+  appId: "1:152932384333:web:06d528c63950b0412c6604",
+};
 
-// // Initialize Firebase
-// const app = initializeApp(firebaseConfig);
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
 // const database = firebase.database();
-
+const db = getDatabase();
+let refObj = {};
+async function initSnapshot() {
+  await onValue(ref(db), (snapshot) => {
+    const data = snapshot.val();
+    console.log("snapshot", data);
+  });
+}
+initSnapshot();
 $(function () {
   const $h2 = $("h2");
   let $buttons = $(".answer");
