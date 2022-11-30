@@ -24,12 +24,23 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 // const database = firebase.database();
 const db = getDatabase();
-let refObj = {};
 async function initSnapshot() {
-  await onValue(ref(db), (snapshot) => {
-    const data = snapshot.val();
+  let data = {}
+  const snapShot = await onValue(ref(db), (snapshot) => {
+     data = {...snapshot.val()};
     console.log("snapshot", data);
+
+    for(let prop in data) {
+    console.log("Object", data[prop]);
+
+  
+  }
   });
+
+console.log('after loop')
+  // for (const [key, val] of Object.entries(data)) {
+  //   console.log('Object', `${key}:${val}`)
+  // }
 }
 initSnapshot();
 $(function () {
