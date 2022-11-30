@@ -24,25 +24,20 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 // const database = firebase.database();
 const db = getDatabase();
-async function initSnapshot() {
-  let data = {}
-  const snapShot = await onValue(ref(db), (snapshot) => {
-     data = {...snapshot.val()};
-    console.log("snapshot", data);
+// async function initSnapshot() {
+//   let dataArray = [];
+//   await onValue(ref(db), (snapshot) => {
+//     let data = { ...snapshot.val() };
+//     console.log("snapshot", data);
 
-    for(let prop in data) {
-    console.log("Object", data[prop]);
+//     for (let prop in data) {
+//       dataArray.push;
+//       console.log("Object", data[prop]);
+//     }
+//   });
 
-  
-  }
-  });
-
-console.log('after loop')
-  // for (const [key, val] of Object.entries(data)) {
-  //   console.log('Object', `${key}:${val}`)
-  // }
-}
-initSnapshot();
+//   console.log("after loop");
+// }
 $(function () {
   const $h2 = $("h2");
   let $buttons = $(".answer");
@@ -59,7 +54,9 @@ $(function () {
 
   let score = 0;
   let qCount = 0;
-
+  let highScoreArray = [];
+  let today;
+  let endTime;
   const loadAnswers = () => {
     $clue.text(questionBank[qCount].hint);
     $h2.text(questionBank[qCount].question);
@@ -73,8 +70,8 @@ $(function () {
     }
   };
 
-  let today;
-  let endTime;
+  // let today;
+  // let endTime;
   // console.log("time", today.getTime());
 
   const questionBank = [
@@ -249,6 +246,23 @@ $(function () {
     },
   ];
 
+  async function initSnapshot() {
+    // let dataArray = [];
+    await onValue(ref(db), (snapshot) => {
+      let data = { ...snapshot.val() };
+      console.log("snapshot", data);
+
+      for (let prop in data) {
+        highScoreArray.push(data[prop]);
+        console.log("initialized array", highScoreArray);
+      }
+    });
+
+    console.log("after loop");
+  }
+
+  initSnapshot();
+
   $start.on("click", function (e) {
     e.preventDefault();
     let start = new Date();
@@ -300,14 +314,31 @@ $(function () {
       } else {
         let end = new Date();
         endTime = end.getTime();
-        console.log("End Time", (endTime - today) / 1000);
-        // const final
+        // console.log("End Time", (endTime - today) / 1000);
+        const timeTakenToFinish = (endTime - today) / 1000;
+        if (highScoreArray.length < 5) {
+          highScoreArray.push({ score: score, time: (endTime - today) / 1000 });
+        } else {
+          highScoreArray.map((obj) => {
+            if (obj.score < score) {
+              highScoreArray.push({
+                score: score,
+                time: (endTime - today) / 1000,
+              });
+            } else if (!obj.score > score && timeTakenToFinish < obj.time) {
+               highScoreArray.push({
+                 score: score,
+                 time: (endTime - today) / 1000,
+               });
+            }
+          });
+        }
         const db = getDatabase();
         const postListRef = ref(db);
         const newPostRef = push(postListRef);
         set(newPostRef, {
-         score:score,
-         time:(endTime - today) / 1000
+          score: score,
+          time: (endTime - today) / 1000,
           //  objToSend
         });
 
