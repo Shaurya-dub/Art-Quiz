@@ -62,8 +62,8 @@ $(function () {
     }
   };
 
-  let today
-  let endTime
+  let today;
+  let endTime;
   // console.log("time", today.getTime());
 
   const questionBank = [
@@ -240,9 +240,9 @@ $(function () {
 
   $start.on("click", function (e) {
     e.preventDefault();
-     let start = new Date();
-     today = start.getTime();
-     console.log("time start", today);
+    let start = new Date();
+    today = start.getTime();
+    console.log("time start", today);
     if (!$playerName.val()) {
       alert("Please Enter your name");
     } else {
@@ -287,9 +287,19 @@ $(function () {
         // }
         loadAnswers();
       } else {
-          let end = new Date();
-          endTime = end.getTime();
-          console.log("End Time", (endTime - today) / 1000); 
+        let end = new Date();
+        endTime = end.getTime();
+        console.log("End Time", (endTime - today) / 1000);
+        // const final
+        const db = getDatabase();
+        const postListRef = ref(db);
+        const newPostRef = push(postListRef);
+        set(newPostRef, {
+         score:score,
+         time:(endTime - today) / 1000
+          //  objToSend
+        });
+
         $end.css("display", "block");
         $pName.text($playerName.val());
         $scDisplay.text(score);
@@ -307,7 +317,7 @@ $(function () {
   $reset.on("click", function () {
     // let end = new Date();
     // endTime = end.getTime();
-    // console.log('End Time', (today - endTime) / 1000); 
+    // console.log('End Time', (today - endTime) / 1000);
     qCount = 0;
     score = 0;
     $end.css("display", "none");
