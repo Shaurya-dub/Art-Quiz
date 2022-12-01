@@ -315,24 +315,37 @@ $(function () {
         let end = new Date();
         endTime = end.getTime();
         // console.log("End Time", (endTime - today) / 1000);
-        const timeTakenToFinish = (endTime - today) / 1000;
-        if (highScoreArray.length < 5) {
-          highScoreArray.push({ score: score, time: (endTime - today) / 1000 });
-        } else {
-          highScoreArray.map((obj) => {
-            if (obj.score < score) {
-              highScoreArray.push({
-                score: score,
-                time: (endTime - today) / 1000,
-              });
-            } else if (!obj.score > score && timeTakenToFinish < obj.time) {
-               highScoreArray.push({
-                 score: score,
-                 time: (endTime - today) / 1000,
-               });
-            }
-          });
-        }
+        // const timeTakenToFinish = (endTime - today) / 1000;
+        highScoreArray.push({
+          score: score,
+          time: (endTime - today) / 1000,
+        });
+
+        highScoreArray.sort((a,b) => {
+          return (
+            b.score - a.score || a.time - b.time
+          )
+        })
+
+        console.log('sorted score', highScoreArray)
+
+        // if (highScoreArray.length < 5) {
+        //   highScoreArray.push({ score: score, time: (endTime - today) / 1000 });
+        // } else {
+        //   highScoreArray.map((obj) => {
+        //     if (obj.score < score) {
+        //       highScoreArray.push({
+        //         score: score,
+        //         time: (endTime - today) / 1000,
+        //       });
+        //     } else if (!obj.score > score && timeTakenToFinish < obj.time) {
+        //       highScoreArray.push({
+        //         score: score,
+        //         time: (endTime - today) / 1000,
+        //       });
+        //     }
+        //   });
+        // }
         const db = getDatabase();
         const postListRef = ref(db);
         const newPostRef = push(postListRef);
