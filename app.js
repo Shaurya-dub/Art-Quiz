@@ -346,12 +346,15 @@ $(function () {
         //     }
         //   });
         // }
+        const arrayToSend = highScoreArray.slice(0,5)
+
         const db = getDatabase();
         const postListRef = ref(db);
-        const newPostRef = push(postListRef);
-        set(newPostRef, {
-          score: score,
-          time: (endTime - today) / 1000,
+        // const newPostRef = push(postListRef);
+        set(postListRef, {
+          arrayToSend
+          // score: score,
+          // time: (endTime - today) / 1000,
           //  objToSend
         });
 
