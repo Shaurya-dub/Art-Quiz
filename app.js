@@ -251,7 +251,7 @@ $(function () {
     await onValue(ref(db), (snapshot) => {
       let data = { ...snapshot.val() };
       console.log("snapshot", data);
-
+      highScoreArray = []
       for (let prop in data) {
         highScoreArray.push(data[prop]);
         console.log("initialized array", highScoreArray);
