@@ -316,9 +316,11 @@ $(function () {
         endTime = end.getTime();
         // console.log("End Time", (endTime - today) / 1000);
         // const timeTakenToFinish = (endTime - today) / 1000;
+        const highScorePlayerName =  $playerName.val().slice(0,5);
         highScoreArray.push({
           score: score,
           time: (endTime - today) / 1000,
+          name: highScorePlayerName
         });
 
         highScoreArray.sort((a,b) => {
