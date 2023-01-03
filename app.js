@@ -47,6 +47,7 @@ $(function () {
   const $start = $(".start");
   const $intro = $(".intro");
   const $end = $(".end");
+  const $highScoreList = $(".highScoreList");
   const $pName = $(".tester");
   const $scDisplay = $(".target");
   const $reset = $(".reset");
@@ -319,7 +320,7 @@ $(function () {
         endTime = end.getTime();
         // console.log("End Time", (endTime - today) / 1000);
         // const timeTakenToFinish = (endTime - today) / 1000;
-        const highScorePlayerName =  $playerName.val().slice(0,5);
+        const highScorePlayerName =  $playerName.val().slice(0,10);
         highScoreArray.push({
           score: score,
           time: (endTime - today) / 1000,
@@ -366,6 +367,10 @@ $(function () {
         $end.css("display", "block");
         $pName.text($playerName.val());
         $scDisplay.text(score);
+        for (let score of arrayToSend) {
+           $highScoreList.append(`<div class="scoreHolder"> <p>${score.name}</p> <p>${score.score}</p> <p>${score.time}</p>  </div>`)
+        }
+
         $scMessage.text(scoreMessage(score));
         $scMessage.css("color", "#a17ff5");
       }

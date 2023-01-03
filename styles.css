@@ -474,6 +474,7 @@ h1 {
 
 .end {
   display: none;
+  overflow-y: scroll;
 }
 
 .endDisplay h4 {
@@ -482,6 +483,14 @@ h1 {
 }
 .scMessage {
   text-shadow: 1px 1px #030302;
+}
+
+.scoreHolder {
+  display:flex;
+  width:100%;
+  justify-content: space-evenly;
+  font-size: 16px;
+  text-align: center;
 }
 
 .reset {
