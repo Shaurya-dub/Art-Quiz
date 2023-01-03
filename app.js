@@ -252,8 +252,11 @@ $(function () {
       let data = { ...snapshot.val() };
       console.log("snapshot", data);
       highScoreArray = []
+      // I Should probably refactor this to avoid double loop, even though technically it is O(1)
       for (let prop in data) {
-        highScoreArray.push(data[prop]);
+        for (let score of data[prop]) {
+          highScoreArray.push(score);
+        }
         console.log("initialized array", highScoreArray);
       }
     });
