@@ -48,6 +48,9 @@ $(function () {
   const $intro = $(".intro");
   const $end = $(".end");
   const $highScoreList = $(".highScoreList");
+  const $scoreName = $(".scoreName");
+  const $scorePoints = $(".scorePoints");
+  const $scoreTime = $(".scoreTime");
   const $pName = $(".tester");
   const $scDisplay = $(".target");
   const $reset = $(".reset");
@@ -366,9 +369,18 @@ $(function () {
 
         $end.css("display", "block");
         $pName.text($playerName.val());
+        $playerName.val('');
         $scDisplay.text(score);
+        // $highScoreList.empty();
+        $scoreName.empty();
+        $scorePoints.empty();
+        $scoreTime.empty();
         for (let score of arrayToSend) {
-           $highScoreList.append(`<div class="scoreHolder"> <p>${score.name}</p> <p>${score.score}</p> <p>${score.time}</p>  </div>`)
+          //  $highScoreList.append(`<div class="scoreHolder"> <p>${score.name}</p> <p>${score.score}</p> <p>${score.time}</p>  </div>`)
+          $scoreName.append(`<p>${score.name}</p>`);
+          $scorePoints.append(`<p>${score.score}</p>`);
+          $scoreTime.append(`<p>${score.time}</p>`);
+
         }
 
         $scMessage.text(scoreMessage(score));

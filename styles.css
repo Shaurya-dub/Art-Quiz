@@ -485,13 +485,22 @@ h1 {
   text-shadow: 1px 1px #030302;
 }
 
-.scoreHolder {
+.highScoreList {
   display:flex;
   width:100%;
   justify-content: space-evenly;
   font-size: 16px;
   text-align: center;
 }
+.highScoreBanner {
+  margin:auto; 
+  font-size:28px;
+  color:#6506ef;
+}
+/* .scoreHolder p {
+  width: calc((100% / 3) - 20px);
+  text-align: center;
+} */
 
 .reset {
   border: transparent;
