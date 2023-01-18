@@ -1,0 +1,22 @@
+{
+  "name": "smartypaints",
+  "version": "1.0.0",
+  "description": "An art quiz that tests your knowledge on all things art, and tracks your score.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shaurya-dub/smartyPaints.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shaurya-dub/smartyPaints/issues"
+  },
+  "homepage": "https://github.com/Shaurya-dub/smartyPaints#readme",
+  "devDependencies": {
+    "concurrently": "^7.6.0"
+  }
+}
